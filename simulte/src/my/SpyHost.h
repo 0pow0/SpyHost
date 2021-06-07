@@ -7,6 +7,7 @@
 #include <future>
 #include <iostream>
 #include <vector>
+#include <deque>
 #include "inet/common/lifecycle/ILifecycle.h"
 #include "inet/mobility/my/MyMobility_m.h"
 #include "ActionInfo_generated.h"
