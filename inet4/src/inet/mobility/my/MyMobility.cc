@@ -34,10 +34,10 @@ void MyMobility::initialize(int stage)
         //Coord direction = Quaternion(EulerAngles(heading, -elevation, rad(0))).rotate(Coord::X_AXIS);
 		//lastVelocity = direction * speed;
     }
-//	else if (stage == INITSTAGE_SINGLE_MOBILITY) {
-//        initializeOrientation();
-//        initializePosition();
-//    }
+	else if (stage == INITSTAGE_SINGLE_MOBILITY) {
+        initializeOrientation();
+        initializePosition();
+    }
 }
 
 void MyMobility::initializePosition()

@@ -14,6 +14,8 @@ void SpyHost::initialize(int stage) {
     std::future<void> futureObj = socketExitSignal.get_future();
     std::thread t(&SpyHost::listen_socket, this, std::move(futureObj));
     th = std::move(t);
+//    cModuleType *moduleType = cModuleType::get("lte.corenetwork.nodes.MyUe");
+//    cModule *module = moduleType->create("dmc1", this);
 }	
 
 void SpyHost::finish() {

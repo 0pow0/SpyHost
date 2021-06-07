@@ -5,7 +5,8 @@ simple SpyHost
     parameters:
         @class(inet::SpyHost);
         @display("i=device/server");
+        int numUe = default(1);
 	gates:
-		input in[5];
-		output out[5];
+		input in[numUe];
+		output out[numUe];
 }
