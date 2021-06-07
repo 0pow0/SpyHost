@@ -22,7 +22,7 @@ private:
     int listen_fd, conn_fd;
     std::promise<void> socketExitSignal;
     std::thread th;
-    std::vector<uint8_t*> messageQueue;
+    std::deque<uint8_t*> messageQueue;
     cMessage* selfMsg;
 public:
 	virtual void initialize(int stage) override;

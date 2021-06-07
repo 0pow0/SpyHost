@@ -38,7 +38,7 @@ void SpyHost::handleMessage(cMessage *msg) {
         //std::cout << "111 SypHost::handleSelfMessage()" << std::endl;
         if (messageQueue.size() != 0) {
             std::cout << "222 SypHost::handleSelfMessage()" << std::endl;
-            auto buf_pointer = messageQueue.back();
+            auto buf_pointer = messageQueue.front();
             auto actionInfoRecieved = GetActionInfo(buf_pointer);
             auto id = actionInfoRecieved->uav_id();
             auto lat = actionInfoRecieved->latitude();
@@ -58,7 +58,7 @@ void SpyHost::handleMessage(cMessage *msg) {
             }
             else delete actionInfo;
 
-            messageQueue.pop_back();
+            messageQueue.pop_front();
             delete buf_pointer;
         } 
 
