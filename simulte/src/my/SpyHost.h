@@ -8,15 +8,17 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <unordered_map>
 #include "inet/common/lifecycle/ILifecycle.h"
 #include "inet/mobility/my/MyMobility_m.h"
-#include "ActionInfo_generated.h"
+#include "ROC_generated.h"
 
 extern "C" {
     #include "unp.h"
 }
 
 namespace inet {
+class UeGenerator;
 
 class SpyHost : public cSimpleModule {
 private:
@@ -25,14 +27,18 @@ private:
     std::thread th;
     std::deque<uint8_t*> messageQueue;
     cMessage* selfMsg;
+    UeGenerator *ueGen = nullptr;
+    void roc_creation_CB(const ROC::ROCInfo*);
+    void roc_action_CB(const ROC::ROCInfo*);
+    std::unordered_map<std::string, int> id_to_gateIdx;
 public:
 	virtual void initialize(int stage) override;
 	virtual void handleMessage(cMessage *msg) override;
     virtual void finish() override;
     virtual void listen();
     void listen_socket(std::future<void>);
-    void str_echo_1(int sockfd);
-
+    void listen_roc(int sockfd);
+    ~SpyHost();
 };
 
 } // namespace inet

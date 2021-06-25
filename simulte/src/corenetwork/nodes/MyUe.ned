@@ -40,7 +40,7 @@ module MyUe
 
 
         //# Mobility
-        string mobilityType = default("StationaryMobility");
+        string mobilityType = default("MyMobility");
 
         //# Apps
         int numApps = default(0);   // no of apps.
