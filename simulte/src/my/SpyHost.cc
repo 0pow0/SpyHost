@@ -70,6 +70,8 @@ void SpyHost::roc_deletion_CB(const ROCInfo* roc_info) {
     std::string uePath = "<root>.ue" + uav_id;
     auto ue = this->getModuleByPath(uePath.c_str());
     if (!ue) return;
+    std::cout << "[SpyHost] roc_deletion_CB(): " 
+        << "id=" << uav_id << std::endl;
     ue->callFinish();
     ue->deleteModule();
 }
