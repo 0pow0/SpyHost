@@ -69,9 +69,9 @@ void SpyHost::roc_deletion_CB(const ROCInfo* roc_info) {
     auto uav_id = deletion_info->uav_id()->str();
     std::string uePath = "<root>.ue" + uav_id;
     auto ue = this->getModuleByPath(uePath.c_str());
-    if (!ue) return;
     std::cout << "[SpyHost] roc_deletion_CB(): " 
         << "id=" << uav_id << std::endl;
+    if (!ue) return;
     ue->callFinish();
     ue->deleteModule();
 }
@@ -82,12 +82,12 @@ void SpyHost::roc_creation_CB(const ROCInfo* roc_info) {
     auto lat = creation_info->latitude()->str();
     auto lng = creation_info->longitude()->str();
     auto master_id = creation_info->master_id();
-    if (id_to_gateIdx.count(uav_id)) return;
     std::cout << "[SpyHost] roc_creation_CB(): " 
         << "id=" << uav_id 
         << "lat=" << lat 
         << "lng=" << lng 
         << "master_id=" << master_id << std::endl;
+    if (id_to_gateIdx.count(uav_id)) return;
     int gate_idx = ueGen->generate(uav_id, master_id, lat, lng);
     id_to_gateIdx.emplace(uav_id, gate_idx);
 }
@@ -97,11 +97,11 @@ void SpyHost::roc_action_CB(const ROCInfo* roc_info) {
     auto uav_id = actionInfoRecieved->uav_id()->str();
     auto lat = actionInfoRecieved->latitude()->str();
     auto lng = actionInfoRecieved->longitude()->str();
-    if (!id_to_gateIdx.count(uav_id)) return;
     std::cout << "[SpyHost] roc_action_CB(): " 
         << "id=" << uav_id 
         << "lat=" << lat 
         << "lng=" << lng << std::endl;
+    if (!id_to_gateIdx.count(uav_id)) return;
     inet::ActionInfo* actionInfo = new inet::ActionInfo("action info");
     actionInfo->setLat(lat.c_str());
     actionInfo->setLng(lng.c_str());
