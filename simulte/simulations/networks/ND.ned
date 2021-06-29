@@ -21,7 +21,6 @@ import lte.epc.PgwStandardSimplified;
 import lte.common.LteNetworkConfigurator;
 import lte.my.SpyHost;
 import inet.common.geometry.common.SimpleGeographicCoordinateSystem;
-import lte.osg.OsgEarthScene;
 
 network ND 
 {
