@@ -30,6 +30,7 @@ private:
     UeGenerator *ueGen = nullptr;
     void roc_creation_CB(const ROC::ROCInfo*);
     void roc_action_CB(const ROC::ROCInfo*);
+    void roc_deletion_CB(const ROC::ROCInfo*);
     std::unordered_map<std::string, int> id_to_gateIdx;
 public:
 	virtual void initialize(int stage) override;

@@ -58,6 +58,8 @@ OBJS = \
     $O/epc/gtp/GtpUserSimplified.o \
     $O/epc/gtp/GtpUserX2.o \
     $O/my/SpyHost.o \
+    $O/my/UeGenerator.o \
+    $O/osg/OsgEarthScene.o \
     $O/stack/compManager/LteCompManagerBase.o \
     $O/stack/compManager/X2CompMsg.o \
     $O/stack/compManager/compManagerProportional/LteCompManagerProportional.o \
@@ -283,6 +285,14 @@ MSGC:=$(MSGC) --msg6
 #
 ifeq ($(PLATFORM),win32.x86_64)
   LDFLAGS += -lws2_32
+endif
+
+# add required libraries for OpenSceneGraph and osgEarth
+ifeq ($(WITH_OSG),yes)
+OMNETPP_LIBS += $(filter-out $(USERIF_LIBS),$(OSG_LIBS) -losgAnimation)
+endif
+ifeq ($(WITH_OSGEARTH),yes)
+OMNETPP_LIBS += $(filter-out $(USERIF_LIBS),$(OSGEARTH_LIBS) -losgEarthFeatures -losgEarthSymbology -losgEarthAnnotation)
 endif
 
 # <<<

@@ -53,6 +53,8 @@ void SpyHost::handleMessage(cMessage *msg) {
                                      break;
                 case ROCType_Action: roc_action_CB(roc_info);
                                      break;
+                case ROCType_Delete: roc_deletion_CB(roc_info);
+                                     break;
                 default: break;
             }
             messageQueue.pop_front();
@@ -60,6 +62,16 @@ void SpyHost::handleMessage(cMessage *msg) {
         } 
         scheduleAt(simTime() + SimTime(500, SIMTIME_MS), selfMsg);
     }
+}
+
+void SpyHost::roc_deletion_CB(const ROCInfo* roc_info) {
+    auto deletion_info = static_cast<const DeletionInfo*>(roc_info->info());
+    auto uav_id = deletion_info->uav_id()->str();
+    std::string uePath = "<root>.ue" + uav_id;
+    auto ue = this->getModuleByPath(uePath.c_str());
+    if (!ue) return;
+    ue->callFinish();
+    ue->deleteModule();
 }
 
 void SpyHost::roc_creation_CB(const ROCInfo* roc_info) {
