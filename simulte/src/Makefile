@@ -59,7 +59,6 @@ OBJS = \
     $O/epc/gtp/GtpUserX2.o \
     $O/my/SpyHost.o \
     $O/my/UeGenerator.o \
-    $O/osg/OsgEarthScene.o \
     $O/stack/compManager/LteCompManagerBase.o \
     $O/stack/compManager/X2CompMsg.o \
     $O/stack/compManager/compManagerProportional/LteCompManagerProportional.o \
