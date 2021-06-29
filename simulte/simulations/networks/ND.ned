@@ -66,9 +66,6 @@ network ND
         }
         coordinateSystem: SimpleGeographicCoordinateSystem {
         }
-        osgEarthScene: OsgEarthScene {
-            @display("p=74,31");
-        }
     connections:
         server.pppg++ <--> Eth10G <--> router.pppg++;
         router.pppg++ <--> Eth10G <--> pgw.filterGate;
